@@ -1,0 +1,14 @@
+.invoice-card {
+    list-style-type: none;
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+.invoice-card-line {
+    display:block;
+    clear:both;
+}
+.invoice-card-line-data {
+    float: right;
+}
