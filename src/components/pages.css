@@ -1,0 +1,37 @@
+.invoice-cards-list,
+.invoice-cards-list-createInvoice-button-section {
+    display:block;
+    clear:both;
+    position:relative;
+}
+.invoice-cards-list-createInvoice-button-section::after {
+    content: '';
+    display:block;
+    clear:both;
+}
+.invoice-cards-list-createInvoice-button {
+    display:block;
+    width: auto;
+    height: auto;
+    float: right;
+    background-color: lightblue;
+    border: 1px solid black;
+    border-radius: 3px;
+    box-shadow: #000 0 0 0;
+    padding: 3px;
+    text-decoration:none;
+    color:black;
+    width: 120px;
+    text-align: center;
+}
+.invoice-cards-list-createInvoice-button:hover {
+    font-weight: bold;
+}
+
+.invoice-cards-list {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
