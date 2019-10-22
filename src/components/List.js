@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Card from './Invoice/Card';
 
+import './pages.css';
+
 const List = (props) => {
   return (<div>
-    <div>
-      <Link to={"/create"}>Create Invoice</Link>
+    <div className={"invoice-cards-list-createInvoice-button-section"}>
+      <Link className={"invoice-cards-list-createInvoice-button"} to={"/create"}>Create Invoice</Link>
     </div>
     <ul className={"invoice-cards-list"}>
       {props.invoices ? props.invoices.map((item) => {

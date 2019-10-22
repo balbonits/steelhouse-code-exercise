@@ -1,7 +1,31 @@
 .invoice-app {
   display: block;
   clear: both;
-  width: auto;
+  position:relative;
+  width: 100vw;
+  max-width: 650px;
   height: auto;
-  max-width: 50vw;
+  border: 1px solid #cdcdcd;
+  border-radius: 3px;
+  box-sizing: border-box;
+  margin: 1em auto;
+  padding: 0;
+}
+
+.invoice-app-header,
+.invoice-app-content {
+  display:block;
+  clear:both;
+  position:relative;
+  box-sizing: border-box;
+  width:100%;
+  height:auto;
+  padding: 0.5em 1em;
+}
+.invoice-app-header {
+  background-color:#efefef;
+}
+.invoice-app-header-title {
+  margin:0;
+  padding:0;
 }

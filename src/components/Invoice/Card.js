@@ -19,10 +19,10 @@ const Card = (props) => {
     </span>
     <span className={"invoice-card-line"}>
       <label className={"invoice-card-line-label"}>Total</label>
-      <span className={"invoice-card-line-data"}>{props.content.total}</span>
+      <span className={"invoice-card-line-data"}>${parseFloat(props.content.total).toFixed(2)}</span>
     </span>
-    <span className={"invoice-card-line"}>
-      <Link to={`/edit/${props.id}`}>Edit</Link>
+    <span className={"invoice-card-buttons"}>
+      <Link className={"invoice-card-button edit-button"} to={`/edit/${props.id}`}>Edit</Link>
     </span>
   </li>);
 }

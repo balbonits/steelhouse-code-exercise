@@ -4,71 +4,7 @@ import { connect } from 'react-redux';
 import { addInvoice, deleteInvoice, updateInvoice } from '../../store/actions';
 
 import './Form.css';
-// import FormList from './FormList';
-
-
-/*
-  TODO:
-  * save/update value from ListItem
-  * update 'items' array with new item values
-*/
-
-
-class ListItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      price: 0
-    };
-    this.handleFieldChange = this.handleFieldChange.bind(this);
-  }  
-  handleFieldChange(ev) {
-    const newState = {...this.state};
-    newState[ev.target.name] = ev.target.value;
-    this.props.onUpdateListItem({...newState, id: this.props.id});
-    this.setState(newState);    
-  }
-  componentDidMount(){
-    const {name, price} = this.props;
-    this.setState({name, price});
-  }
-  render(){
-    return (<li id={this.props.id}>
-      <span className={"form-list-item-field"}>
-        <input className={"form-list-item-field-textbox"} type={"text"} value={this.state.name} name={"name"} onChange={this.handleFieldChange} />
-        <input className={"form-list-item-field-textbox"} type={"number"} value={this.state.price} name={"price"} onChange={this.handleFieldChange} />
-      </span>  
-    </li>);  
-  }
-}
-
-class List extends Component {
-  constructor(props){
-    super(props);
-    this.handleAddItem = this.handleAddItem.bind(this);
-    this.handleUpdateListItem = this.handleUpdateListItem.bind(this);
-  }
-  handleAddItem(){
-    const newId = this.props.items.length + 1;
-    const newItems = [...this.props.items, { id: newId, name: '', price: 0}];
-    this.props.onUpdateList(newItems);
-  }
-  handleUpdateListItem(listItem){
-    const itemIdx = this.props.items.findIndex((item) => (parseInt(item.id) === parseInt(listItem.id)))
-    const newItems = [...this.props.items];
-    newItems[itemIdx] = listItem;
-    this.props.onUpdateList(newItems);
-  }
-  render() {
-    return (<div>
-      <ul>
-      {this.props.items.map(item => <ListItem onUpdateListItem={this.handleUpdateListItem} id={item.id} key={item.id} name={item.name} price={item.price}/>) || ''}
-      </ul>
-      <button onClick={this.handleAddItem}>Add Item</button>
-    </div>);    
-  }
-}
+import List from './FormList';
 
 class Form extends Component {
   constructor(props) {
@@ -127,9 +63,9 @@ class Form extends Component {
   }
 
   calculateTotal(items){
-    let result = 0;
-    items.map(item => result += parseInt(item.price));
-    return result;
+    let result = parseFloat(0.00);
+    items.map(item => result += parseFloat(item.price));
+    return result.toFixed(2);
   }
 
   componentDidMount() {
@@ -140,16 +76,16 @@ class Form extends Component {
 
   renderCreateButtons() {
     return (<span className={"form-buttons"}>
-      <Link to={"/"}>Back</Link>
-      <button onClick={this.handleCreateInvoice}>Create</button>
+      <Link className={"form-button back-button"} to={"/"}>Back</Link>
+      <button className={"form-button create-button"} onClick={this.handleCreateInvoice}>Create</button>
     </span>);
   }
 
   renderEditButtons() {
     return (<span className={"form-buttons"}>
-      <Link to={"/"}>Back</Link>
-      <button onClick={this.handleDeleteInvoice}>Delete</button>
-      <button onClick={this.handleUpdateInvoice}>Save</button>
+      <Link className={"form-button back-button"} to={"/"}>Back</Link>
+      <button className={"form-button delete-button"} onClick={this.handleDeleteInvoice}>Delete</button>
+      <button className={"form-button save-button"} onClick={this.handleUpdateInvoice}>Save</button>
     </span>);
   }
   
@@ -167,7 +103,7 @@ class Form extends Component {
           <label className={"form-field-label"}>Due Date</label>
           <input type={"date"} className={"form-field-textbox"} required onChange={this.handleChange} value={this.state.dueDate} name={"dueDate"}/>
         </span>
-        <List items={this.state.items} onUpdateList={this.handleUpdateList} />
+        <List items={this.state.items} onUpdateList={this.handleUpdateList} total={this.state.total}/>
         {this.props.type && this.props.type === 'edit' ? this.renderEditButtons() : this.renderCreateButtons()}
     </div>);
   }

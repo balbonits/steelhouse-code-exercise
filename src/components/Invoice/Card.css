@@ -1,4 +1,6 @@
 .invoice-card {
+    display:block;
+    width: 100%;
     list-style-type: none;
     border: 1px solid black;
     border-radius: 2px;
@@ -6,9 +8,45 @@
     box-sizing: border-box;
 }
 .invoice-card-line {
+    position:relative;
+    display:flex;
+    clear:both;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.invoice-card-line-label,
+.invoice-card-line-data,
+.invoice-card-button {
+    display:inline-block;
+}
+.invoice-card-line-data,
+.invoice-card-buttons {
+    text-align: right;
+}
+
+.invoice-card-buttons {
     display:block;
+    width: 100%;
     clear:both;
 }
-.invoice-card-line-data {
-    float: right;
+.edit-button {
+    display:inline-block;
+    background-color: lightgoldenrodyellow;
+    border: 1px solid black;
+    border-radius: 3px;
+    box-shadow: #000 0 0 0;
+    padding: 3px;
+    text-decoration:none;
+    color:black;
+    width: 50px;
+    text-align: center;    
+}
+.edit-button:hover {
+    font-weight: bold;
+}
+
+@media(min-width: 768px) {
+    .invoice-card { width: calc(50% - 1em); }
 }

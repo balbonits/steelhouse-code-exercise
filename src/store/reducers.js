@@ -4,25 +4,19 @@ import {
   UPDATE_INVOICE
 } from './actions';
 
+// const testData = {
+//   id:0,
+//   content: {
+//     name: 'Test',
+//     email: 'test@example.com',
+//     dueDate: '2019-10-20',
+//     items: [],
+//     total: parseFloat(0.00).toFixed(2)
+//   }
+// };
+
 const initialState = {
-  invoices: [{
-    id:0,
-    content: {
-      name: 'Test',
-      email: 'test@example.com',
-      dueDate: '2019-10-20',
-      items: [
-      //   {
-      //   name: 'List Item',
-      //   price: 1
-      // },{
-      //   name: 'List Item 2',
-      //   price: 2
-      // }
-    ],
-      total: 0
-    }
-  }],
+  invoices: [],
 };
 
 export default function invoices (state = initialState, action) {
